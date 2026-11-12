@@ -11,3 +11,26 @@
 })();
 
 
+
+// Horizontal services navigation
+const servicesTrack = document.getElementById('servicesTrack');
+
+if (servicesTrack) {
+    const moveService = (direction) => {
+        const ticket = servicesTrack.querySelector('.service-ticket');
+        if (!ticket) return;
+
+        const gap = parseFloat(getComputedStyle(servicesTrack).gap) || 0;
+
+        servicesTrack.scrollBy({
+            left: direction * (ticket.getBoundingClientRect().width + gap),
+            behavior: 'smooth'
+        });
+    };
+
+    document.getElementById('servicePrev')
+        .addEventListener('click', () => moveService(-1));
+
+    document.getElementById('serviceNext')
+        .addEventListener('click', () => moveService(1));
+}
